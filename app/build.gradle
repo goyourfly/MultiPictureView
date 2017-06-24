@@ -1,0 +1,33 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "com.goyourfly.multi_picture_demo"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile project(':library')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.github.bumptech.glide:glide:3.8.0'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.zhihu.android:matisse:0.4.3'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:design:25.3.1'
+}

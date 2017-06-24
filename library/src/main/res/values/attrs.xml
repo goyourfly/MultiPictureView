@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MultiPictureView">
+        <attr name="space" format="dimension" />
+        <attr name="span" format="integer" />
+        <attr name="imageLayoutMode" format="integer">
+            <enum name="DYNAMIC" value="1" />
+            <enum name="STATIC" value="2" />
+        </attr>
+        <attr name="maxImage" format="integer"/>
+        <attr name="deleteDrawable" format="reference"/>
+        <attr name="addDrawable" format="reference"/>
+        <attr name="editable" format="boolean"/>
+    </declare-styleable>
+
+</resources>

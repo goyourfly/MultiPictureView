@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.goyourfly.multi_picture_demo.AddItemActivity"
+    tools:showIn="@layout/activity_add_item">
+
+    <EditText
+        android:id="@+id/edit_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eee"
+        android:gravity="left|top"
+        android:minLines="4"
+        android:padding="8dp" />
+
+
+    <com.goyourfly.multi_picture.MultiPictureView
+        android:id="@+id/multiple_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:editable="true"
+        app:maxImage="9"
+        app:space="6dp"
+        app:span="4" />
+
+
+</LinearLayout>
