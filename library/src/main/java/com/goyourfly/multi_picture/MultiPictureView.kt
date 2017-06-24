@@ -336,7 +336,7 @@ class MultiPictureView : FrameLayout {
 
     private fun bindImage(imageView: ImageView, uri: Uri) {
         if (Instance.imageLoader == null)
-            throw NullPointerException("Please call MultiPictureView.setImageLoader(...) at least one times ")
+            throw NullPointerException("Please call MultipleImageView.setImageLoader(...) at least one times ")
         Instance.imageLoader?.loadImage(imageView, uri)
     }
 
