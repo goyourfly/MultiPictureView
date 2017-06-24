@@ -13,9 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.goyourfly.multi_picture.ImageLoader
 import com.goyourfly.multi_picture.MultiPictureView
+import com.goyourfly.vincent.Vincent
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -46,8 +46,20 @@ class MainActivity : AppCompatActivity() {
 
         findViewById(R.id.fab)
                 .setOnClickListener {
-                    startActivityForResult(Intent(this@MainActivity, AddItemActivity::class.java),requestCodeAddImage)
+                    startActivityForResult(Intent(this@MainActivity, AddItemActivity::class.java), requestCodeAddImage)
                 }
+
+
+
+        MultiPictureView.setImageLoader(object : ImageLoader {
+            override fun loadImage(image: ImageView, uri: Uri) {
+                Vincent.with(image.context)
+                        .load(uri)
+                        .placeholder(R.drawable.ic_placeholder_loading)
+                        .error(R.drawable.ic_placeholder_loading)
+                        .into(image)
+            }
+        })
     }
 
 
@@ -74,16 +86,6 @@ class MainActivity : AppCompatActivity() {
             val textContent = view.findViewById(R.id.text_content) as TextView
             val multiPictureView = view.findViewById(R.id.multi_image_view) as MultiPictureView
 
-            init {
-                MultiPictureView.setImageLoader(object : ImageLoader {
-                    override fun loadImage(image: ImageView, uri: Uri) {
-                        Glide.with(image.context)
-                                .load(uri)
-                                .placeholder(R.drawable.ic_placeholder_loading)
-                                .into(image)
-                    }
-                })
-            }
         }
 
         fun addItem(item: Item) {
@@ -107,15 +109,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("...","onActivityResult:$requestCode,image:$requestCode")
-        if(resultCode == Activity.RESULT_OK && requestCode == requestCodeAddImage){
-           if(data != null){
-               val text = data.getStringExtra("text")
-               val uris = data.getParcelableArrayListExtra<Uri>("image")
+        Log.d("...", "onActivityResult:$requestCode,image:$requestCode")
+        if (resultCode == Activity.RESULT_OK && requestCode == requestCodeAddImage) {
+            if (data != null) {
+                val text = data.getStringExtra("text")
+                val uris = data.getParcelableArrayListExtra<Uri>("image")
 
-               Log.d("...","onActivityResult:$text,image:$uris")
-               adapter.addItem(Item(text,uris))
-           }
+                Log.d("...", "onActivityResult:$text,image:$uris")
+                adapter.addItem(Item(text, uris))
+            }
         }
     }
 
