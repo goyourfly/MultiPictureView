@@ -1,5 +1,8 @@
 # MultiPictureView
 
+
+[![](https://jitpack.io/v/goyourfly/MultiPictureView.svg)](https://jitpack.io/#goyourfly/MultiPictureView)
+
 ##### MultiPictureView 是一个将多张图片组合显示并支持添加和删除的控件
 
 ### Demo
@@ -81,3 +84,27 @@ multiPictureView.setItemClickCallback(new MultiPictureView.ItemClickCallback() {
     }
 });
 ````
+
+### Compile
+
+[![](https://jitpack.io/v/goyourfly/MultiPictureView.svg)](https://jitpack.io/#goyourfly/MultiPictureView)
+
+Step 1. Add it in your root build.gradle at the end of repositories:
+
+````
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+````
+
+Step 2. Add the dependency
+
+````
+dependencies {
+    compile 'com.github.goyourfly:MultiPictureView:latestVersion'
+}
+````
+
