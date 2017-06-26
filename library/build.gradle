@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 ext {
     PUBLISH_GROUP_ID = 'com.github.goyourfly'
     PUBLISH_ARTIFACT_ID = 'multi_picture_view'
-    PUBLISH_VERSION = '1.1.0'
+    PUBLISH_VERSION = '1.2.0'
 }
 
 android {

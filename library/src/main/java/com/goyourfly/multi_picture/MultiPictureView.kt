@@ -24,13 +24,13 @@ import com.goyourfly.multiple_image.R
 class MultiPictureView : FrameLayout {
     interface ItemClickCallback {
 
-        fun onItemClicked(view:View,index: Int, uris: ArrayList<Uri>)
+        fun onItemClicked(view: View, index: Int, uris: ArrayList<Uri>)
 
     }
 
     interface AddClickCallback {
 
-        fun onAddClick(view:View)
+        fun onAddClick(view: View)
 
     }
 
@@ -70,7 +70,7 @@ class MultiPictureView : FrameLayout {
     var imageLayoutMode = ImageLayoutMode.STATIC
 
     // 最多显示图片个数
-    var maxImage = 9
+    var max = 9
 
 
     // 删除图标
@@ -83,7 +83,7 @@ class MultiPictureView : FrameLayout {
     var itemClickCallback: ItemClickCallback? = null
 
     var deleteClickCallback: DeleteClickCallback? = object : DeleteClickCallback {
-        override fun onDeleted(view:View,index: Int) {
+        override fun onDeleted(view: View, index: Int) {
             if (editable) {
                 removeItem(index)
             }
@@ -117,7 +117,7 @@ class MultiPictureView : FrameLayout {
             span = typeArray.getInteger(R.styleable.MultiPictureView_span, span)
             space = typeArray.getDimension(R.styleable.MultiPictureView_space, space.toFloat()).toInt()
             imageLayoutMode = typeArray.getInteger(R.styleable.MultiPictureView_imageLayoutMode, imageLayoutMode)
-            maxImage = typeArray.getInteger(R.styleable.MultiPictureView_maxImage, maxImage)
+            max = typeArray.getInteger(R.styleable.MultiPictureView_max, max)
             editable = typeArray.getBoolean(R.styleable.MultiPictureView_editable, editable)
             deleteDrawableId = typeArray.getResourceId(R.styleable.MultiPictureView_deleteDrawable, deleteDrawableId)
             addDrawableId = typeArray.getResourceId(R.styleable.MultiPictureView_addDrawable, addDrawableId)
@@ -135,17 +135,16 @@ class MultiPictureView : FrameLayout {
     fun setupView() {
         removeAllViews()
 
-        for (i in 0 until imageList.size) {
+        for (i in 0 until getNeedViewCount()) {
             val image = generateImage(i)
             addView(image)
             image.setOnClickListener {
                 val arrayList = arrayListOf<Uri>()
                 arrayList.addAll(imageList)
-                itemClickCallback?.onItemClicked(it,i, arrayList)
+                itemClickCallback?.onItemClicked(it, i, arrayList)
             }
         }
-        if (editable
-                && imageList.size < maxImage) {
+        if (shouldDrawAddView()) {
             val image = generateImage(-1)
             image.setImageResource(addDrawableId)
             addView(image)
@@ -183,13 +182,10 @@ class MultiPictureView : FrameLayout {
         return imageSize
     }
 
-    private fun getNeedViewCount(): Int {
-        if (editable
-                && imageList.size < maxImage) {
-            return imageList.size + 1
-        }
-        return imageList.size
-    }
+    private fun getNeedViewCount() = Math.min(getCount(), max)
+
+    private fun shouldDrawAddView() = editable && getCount() < max
+
 
     fun setDeleteResource(id: Int) {
         this.deleteDrawableId = id

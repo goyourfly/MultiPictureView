@@ -31,7 +31,7 @@
 	app:deleteDrawable="@drawable/..."
 	app:addDrawable="@drawable/..."
 	app:imageLayoutMode="DYNAMIC"
-	app:maxImage="9"
+	app:max="9"
 	app:space="6dp"
 	app:span="3" />
 ````
@@ -41,7 +41,7 @@
 | editable| boolean | 是否可编辑（添加和删除）| false |
 |  span | integer | 每行最多显示多少 | 3 |
 | space | dimension | 图片间隔大小  | 8dp |
-| maxImage | integer | 最多显示多少张图片 | 9 |
+| max | integer | 最多显示多少张图片 | 9 |
 | imageLayoutMode | integer | 图片布局类型：动态(DYNAMIC=1)和静态(STATIC=2) | STATIC=2 |
 | deleteDrawable | drawable | 删除图标 | 红色删除Drawable |
 | addDrawable | drawable | 添加图片 | 灰色添加图片Drawable |

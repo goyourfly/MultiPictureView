@@ -7,7 +7,7 @@
             <enum name="DYNAMIC" value="1" />
             <enum name="STATIC" value="2" />
         </attr>
-        <attr name="maxImage" format="integer"/>
+        <attr name="max" format="integer"/>
         <attr name="deleteDrawable" format="reference"/>
         <attr name="addDrawable" format="reference"/>
         <attr name="editable" format="boolean"/>

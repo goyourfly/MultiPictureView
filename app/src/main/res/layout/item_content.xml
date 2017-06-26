@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:imageLayoutMode="DYNAMIC"
-        app:maxImage="9"
+        app:max="9"
         app:space="6dp"
         app:span="3" />
 </LinearLayout>
