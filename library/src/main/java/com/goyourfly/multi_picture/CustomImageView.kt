@@ -55,7 +55,7 @@ internal class CustomImageView(context: Context,
                 val endY = event.y
                 if (isTouching && isAClick(startX, endX, startY, endY)) {
                     if (deleteRect.contains(event.x.toInt(), event.y.toInt())) {
-                        deleteCallback?.onDeleted(index)
+                        deleteCallback?.onDeleted(this@CustomImageView,index)
                         return false
                     } else {
                         performClick()

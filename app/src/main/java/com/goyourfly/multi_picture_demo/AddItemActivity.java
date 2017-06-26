@@ -41,7 +41,7 @@ public class AddItemActivity extends AppCompatActivity {
         multiPictureView = (MultiPictureView) findViewById(R.id.multiple_image);
         multiPictureView.setAddClickCallback(new MultiPictureView.AddClickCallback() {
             @Override
-            public void onAddClick(int index) {
+            public void onAddClick(View view) {
                 addImage();
             }
         });

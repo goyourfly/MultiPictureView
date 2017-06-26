@@ -13,10 +13,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.goyourfly.multi_picture.ImageLoader
 import com.goyourfly.multi_picture.MultiPictureView
 import com.goyourfly.vincent.Vincent
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     val requestCodeAddImage = 1
@@ -86,6 +88,13 @@ class MainActivity : AppCompatActivity() {
             val textContent = view.findViewById(R.id.text_content) as TextView
             val multiPictureView = view.findViewById(R.id.multi_image_view) as MultiPictureView
 
+            init {
+                multiPictureView.itemClickCallback = object :MultiPictureView.ItemClickCallback{
+                    override fun onItemClicked(view: View, index: Int, uris: ArrayList<Uri>) {
+                        Toast.makeText(view.context,"PictureClick:$index",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
 
         fun addItem(item: Item) {

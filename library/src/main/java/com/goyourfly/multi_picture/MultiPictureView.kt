@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.util.AttributeSet
+import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import com.goyourfly.multiple_image.R
@@ -23,19 +24,19 @@ import com.goyourfly.multiple_image.R
 class MultiPictureView : FrameLayout {
     interface ItemClickCallback {
 
-        fun onItemClicked(index: Int, uris: ArrayList<Uri>)
+        fun onItemClicked(view:View,index: Int, uris: ArrayList<Uri>)
 
     }
 
     interface AddClickCallback {
 
-        fun onAddClick(index: Int)
+        fun onAddClick(view:View)
 
     }
 
     interface DeleteClickCallback {
 
-        fun onDeleted(index: Int)
+        fun onDeleted(view: View, index: Int)
 
     }
 
@@ -82,7 +83,7 @@ class MultiPictureView : FrameLayout {
     var itemClickCallback: ItemClickCallback? = null
 
     var deleteClickCallback: DeleteClickCallback? = object : DeleteClickCallback {
-        override fun onDeleted(index: Int) {
+        override fun onDeleted(view:View,index: Int) {
             if (editable) {
                 removeItem(index)
             }
@@ -140,7 +141,7 @@ class MultiPictureView : FrameLayout {
             image.setOnClickListener {
                 val arrayList = arrayListOf<Uri>()
                 arrayList.addAll(imageList)
-                itemClickCallback?.onItemClicked(i, arrayList)
+                itemClickCallback?.onItemClicked(it,i, arrayList)
             }
         }
         if (editable
@@ -148,7 +149,7 @@ class MultiPictureView : FrameLayout {
             val image = generateImage(-1)
             image.setImageResource(addDrawableId)
             addView(image)
-            image.setOnClickListener { addClickCallback?.onAddClick(getCount()) }
+            image.setOnClickListener { addClickCallback?.onAddClick(it) }
         }
     }
 

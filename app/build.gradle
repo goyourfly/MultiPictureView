@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 
 android {
@@ -23,11 +22,11 @@ android {
 
 dependencies {
     compile project(':library')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.github.goyourfly:Vincent:master-SNAPSHOT'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.github.goyourfly:vincent:0.1.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.zhihu.android:matisse:0.4.3'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.android.support:design:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.3.1'
 }

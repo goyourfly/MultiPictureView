@@ -67,19 +67,19 @@ multiPictureView = (MultiPictureView) findViewById(R.id.multi_image_view);
 multiPictureView.setList(list:List<Uri>)
 multiPictureView.setAddClickCallback(new MultiPictureView.AddClickCallback() {
     @Override
-    public void onAddClick(int index) {
+    public void onAddClick(View view) {
 		...
     }
 });
 multiPictureView.setDeleteClickCallback(new MultiPictureView.DeleteClickCallback() {
     @Override
-    public void onDeleted(int index) {
+    public void onDeleted(View view,int index) {
 		...
     }
 });
 multiPictureView.setItemClickCallback(new MultiPictureView.ItemClickCallback() {
     @Override
-    public void onItemClicked(int index, @NotNull ArrayList<Uri> uris) {
+    public void onItemClicked(View view,int index,ArrayList<Uri> uris) {
 		...
     }
 });
@@ -87,7 +87,7 @@ multiPictureView.setItemClickCallback(new MultiPictureView.ItemClickCallback() {
 
 ### Compile
 
-[![](https://jitpack.io/v/goyourfly/MultiPictureView.svg)](https://jitpack.io/#goyourfly/MultiPictureView)
+[ ![Download](https://api.bintray.com/packages/goyourfly/maven/MultiPictureView/images/download.svg) ](https://bintray.com/goyourfly/maven/MultiPictureView/_latestVersion)
 
 Step 1. Add it in your root build.gradle at the end of repositories:
 
@@ -95,7 +95,7 @@ Step 1. Add it in your root build.gradle at the end of repositories:
 allprojects {
     repositories {
         ...
-        maven { url 'https://jitpack.io' }
+        jcenter()
     }
 }
 ````
@@ -104,7 +104,12 @@ Step 2. Add the dependency
 
 ````
 dependencies {
-    compile 'com.github.goyourfly:MultiPictureView:latestVersion'
+    compile 'com.github.goyourfly:multi_picture_view:latestVersion'
 }
 ````
 
+
+### Thanks
+
+- [Matisse](https://github.com/zhihu/Matisse)
+- [Vincent](https://github.com/goyourfly/Vincent)

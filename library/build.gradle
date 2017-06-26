@@ -1,6 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+ext {
+    PUBLISH_GROUP_ID = 'com.github.goyourfly'
+    PUBLISH_ARTIFACT_ID = 'multi_picture_view'
+    PUBLISH_VERSION = '1.1.0'
+}
 
 android {
     compileSdkVersion 26
@@ -30,3 +35,5 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
