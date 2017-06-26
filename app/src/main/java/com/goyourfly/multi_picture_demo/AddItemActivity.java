@@ -1,8 +1,11 @@
 package com.goyourfly.multi_picture_demo;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -13,10 +16,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.goyourfly.multi_picture.MultiPictureView;
+import com.goyourfly.vincent.Vincent;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.ImageEngine;
 import com.zhihu.matisse.engine.impl.GlideEngine;
 
 public class AddItemActivity extends AppCompatActivity {
@@ -71,7 +77,51 @@ public class AddItemActivity extends AppCompatActivity {
                     .choose(MimeType.allOf())
                     .maxSelectable(9 - multiPictureView.getCount())
                     .thumbnailScale(0.85f)
-                    .imageEngine(new GlideEngine())
+                    .imageEngine(new ImageEngine() {
+                        @Override
+                        public void loadThumbnail(Context context, int i, Drawable drawable, ImageView imageView, Uri uri) {
+                            Vincent.with(context)
+                                    .load(uri)
+                                    .placeholder(R.drawable.ic_placeholder_loading)
+                                    .error(R.drawable.ic_placeholder_loading)
+                                    .into(imageView);
+                        }
+
+                        @Override
+                        public void loadAnimatedGifThumbnail(Context context, int i, Drawable drawable, ImageView imageView, Uri uri) {
+
+                            Vincent.with(context)
+                                    .load(uri)
+                                    .placeholder(R.drawable.ic_placeholder_loading)
+                                    .error(R.drawable.ic_placeholder_loading)
+                                    .into(imageView);
+                        }
+
+                        @Override
+                        public void loadImage(Context context, int i, int i1, ImageView imageView, Uri uri) {
+
+                            Vincent.with(context)
+                                    .load(uri)
+                                    .placeholder(R.drawable.ic_placeholder_loading)
+                                    .error(R.drawable.ic_placeholder_loading)
+                                    .into(imageView);
+                        }
+
+                        @Override
+                        public void loadAnimatedGifImage(Context context, int i, int i1, ImageView imageView, Uri uri) {
+
+                            Vincent.with(context)
+                                    .load(uri)
+                                    .placeholder(R.drawable.ic_placeholder_loading)
+                                    .error(R.drawable.ic_placeholder_loading)
+                                    .into(imageView);
+                        }
+
+                        @Override
+                        public boolean supportAnimatedGif() {
+                            return false;
+                        }
+                    })
                     .forResult(REQUEST_ADD_IMAGE);
         }
     }
