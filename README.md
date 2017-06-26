@@ -1,7 +1,8 @@
 # MultiPictureView
 
 
-[![](https://jitpack.io/v/goyourfly/MultiPictureView.svg)](https://jitpack.io/#goyourfly/MultiPictureView)
+[ ![Download](https://api.bintray.com/packages/goyourfly/maven/MultiPictureView/images/download.svg) ](https://bintray.com/goyourfly/maven/MultiPictureView/_latestVersion)
+
 
 ##### MultiPictureView 是一个将多张图片组合显示并支持添加和删除的控件
 
