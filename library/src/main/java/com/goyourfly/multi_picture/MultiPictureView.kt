@@ -173,10 +173,10 @@ class MultiPictureView : FrameLayout {
             }
             else -> {
                 // 取一个合理的column
-                columnMeasure = Math.min(Math.ceil(Math.sqrt(getNeedViewCount().toDouble())).toInt(), span)
+                columnMeasure = Math.min(Math.ceil(Math.sqrt(childCount.toDouble())).toInt(), span)
             }
         }
-        rowMeasure = getNeedViewCount() / columnMeasure + if (getNeedViewCount() % columnMeasure == 0) 0 else 1
+        rowMeasure = childCount / columnMeasure + if (childCount % columnMeasure == 0) 0 else 1
         imageSize = (width - space * (columnMeasure - 1)) / columnMeasure
         imageSizeMeasure = imageSize
         return imageSize
