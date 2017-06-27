@@ -4,7 +4,7 @@
 [ ![Download](https://api.bintray.com/packages/goyourfly/maven/MultiPictureView/images/download.svg) ](https://bintray.com/goyourfly/maven/MultiPictureView/_latestVersion)
 
 
-##### MultiPictureView 是一个将多张图片组合显示并支持添加和删除的控件
+##### MultiPictureView是一个可以将多张图片以网格的方式显示的View，通过简单的接口实现烦人的布局，从此解放你的小手手
 
 ### Demo
 
