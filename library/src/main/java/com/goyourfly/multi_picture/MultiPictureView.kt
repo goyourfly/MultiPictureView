@@ -72,6 +72,9 @@ class MultiPictureView : FrameLayout {
     // 最多显示图片个数
     var max = 9
 
+    // 横纵比
+    var ratio: Float = 1F
+
 
     // 删除图标
     var deleteDrawableId: Int = R.drawable.ic_multiple_image_view_delete
@@ -98,7 +101,8 @@ class MultiPictureView : FrameLayout {
     // 测量后实际要显示的行
     private var columnMeasure = 0
     private var rowMeasure = 0
-    private var imageSizeMeasure = 0
+    private var imageWidthMeasure = 0F
+    private var imageHeightMeasure = 0F
     // 图片的Padding
     private var imagePaddingMeasure = 0
 
@@ -115,6 +119,7 @@ class MultiPictureView : FrameLayout {
         val typeArray = context.obtainStyledAttributes(attributeSet, R.styleable.MultiPictureView, defStyleAttr, 0)
         try {
             span = typeArray.getInteger(R.styleable.MultiPictureView_span, span)
+            ratio = typeArray.getFloat(R.styleable.MultiPictureView_ratio, ratio)
             space = typeArray.getDimension(R.styleable.MultiPictureView_space, space.toFloat()).toInt()
             imageLayoutMode = typeArray.getInteger(R.styleable.MultiPictureView_imageLayoutMode, imageLayoutMode)
             max = typeArray.getInteger(R.styleable.MultiPictureView_max, max)
@@ -165,7 +170,7 @@ class MultiPictureView : FrameLayout {
         return image
     }
 
-    fun measureImageSize(width: Int): Int {
+    fun measureImageSize(width: Int) {
         var imageSize = 0
         when (imageLayoutMode) {
             ImageLayoutMode.STATIC -> {
@@ -178,8 +183,8 @@ class MultiPictureView : FrameLayout {
         }
         rowMeasure = childCount / columnMeasure + if (childCount % columnMeasure == 0) 0 else 1
         imageSize = (width - space * (columnMeasure - 1)) / columnMeasure
-        imageSizeMeasure = imageSize
-        return imageSize
+        imageWidthMeasure = imageSize.toFloat()
+        imageHeightMeasure = imageWidthMeasure / ratio
     }
 
     private fun getNeedViewCount() = Math.min(getCount(), max)
@@ -263,17 +268,18 @@ class MultiPictureView : FrameLayout {
             setMeasuredDimension(0, 0)
             return
         }
-        val size = measureImageSize(MeasureSpec.getSize(widthMeasureSpec))
-        val width = size * columnMeasure + (columnMeasure - 1) * space
-        val height = size * rowMeasure + (rowMeasure - 1) * space
-        setMeasuredDimension(width, height)
+        measureImageSize(MeasureSpec.getSize(widthMeasureSpec))
+        val width = imageWidthMeasure * columnMeasure + (columnMeasure - 1) * space
+        val height = imageHeightMeasure * rowMeasure + (rowMeasure - 1) * space
+        setMeasuredDimension(width.toInt(), height.toInt())
 
         for (i in 0 until childCount) {
             val child = getChildAt(i) as ImageView
             if (child.visibility == GONE)
                 return
-            val measureSize = MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY)
-            child.measure(measureSize, measureSize)
+            val measureWidth = MeasureSpec.makeMeasureSpec(imageWidthMeasure.toInt(), MeasureSpec.EXACTLY)
+            val measureHeight = MeasureSpec.makeMeasureSpec(imageHeightMeasure.toInt(), MeasureSpec.EXACTLY)
+            child.measure(measureWidth, measureHeight)
         }
     }
 
@@ -288,16 +294,16 @@ class MultiPictureView : FrameLayout {
             val horizontalIndex = i % columnMeasure
             val verticalIndex = i / columnMeasure
             // 左边距
-            val l = horizontalIndex * imageSizeMeasure + horizontalIndex * space
+            val l = horizontalIndex * imageWidthMeasure + horizontalIndex * space
             // 上边距
-            val t = verticalIndex * imageSizeMeasure + verticalIndex * space
+            val t = verticalIndex * imageHeightMeasure + verticalIndex * space
 
             // 右边
-            val r = l + imageSizeMeasure
+            val r = l + imageWidthMeasure
             // 下边
-            val b = t + imageSizeMeasure
+            val b = t + imageHeightMeasure
 
-            child.layout(l, t, r, b)
+            child.layout(l.toInt(), t.toInt(), r.toInt(), b.toInt())
 
             if (i < imageList.size) {
                 bindImage(child as ImageView, imageList[i])

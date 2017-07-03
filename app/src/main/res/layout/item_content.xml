@@ -19,6 +19,7 @@
         android:layout_marginTop="16dp"
         app:imageLayoutMode="DYNAMIC"
         app:max="9"
+        app:ratio="1"
         app:space="6dp"
         app:span="3" />
 </LinearLayout>

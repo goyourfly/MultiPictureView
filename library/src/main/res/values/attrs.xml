@@ -3,6 +3,7 @@
     <declare-styleable name="MultiPictureView">
         <attr name="space" format="dimension" />
         <attr name="span" format="integer" />
+        <attr name="ratio" format="float" />
         <attr name="imageLayoutMode" format="integer">
             <enum name="DYNAMIC" value="1" />
             <enum name="STATIC" value="2" />
