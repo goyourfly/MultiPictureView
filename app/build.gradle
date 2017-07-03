@@ -29,4 +29,5 @@ dependencies {
     compile 'com.zhihu.android:matisse:0.4.3'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
+//    compile 'com.github.goyourfly:multi_picture_view:1.3.0'
 }

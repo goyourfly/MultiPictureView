@@ -33,6 +33,7 @@
 	app:addDrawable="@drawable/..."
 	app:imageLayoutMode="DYNAMIC"
 	app:max="9"
+	app:ratio="1"
 	app:space="6dp"
 	app:span="3" />
 ````
@@ -41,6 +42,7 @@
 |----|----|----|----|
 | editable| boolean | 是否可编辑（添加和删除）| false |
 |  span | integer | 每行最多显示多少 | 3 |
+|  ratio | float | 宽高比例 | 1 |
 | space | dimension | 图片间隔大小  | 8dp |
 | max | integer | 最多显示多少张图片 | 9 |
 | imageLayoutMode | integer | 图片布局类型：动态(DYNAMIC=1)和静态(STATIC=2) | STATIC=2 |
