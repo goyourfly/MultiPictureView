@@ -92,19 +92,6 @@ multiPictureView.setItemClickCallback(new MultiPictureView.ItemClickCallback() {
 
 [ ![Download](https://api.bintray.com/packages/goyourfly/maven/MultiPictureView/images/download.svg) ](https://bintray.com/goyourfly/maven/MultiPictureView/_latestVersion)
 
-Step 1. Add it in your root build.gradle at the end of repositories:
-
-````
-allprojects {
-    repositories {
-        ...
-        jcenter()
-    }
-}
-````
-
-Step 2. Add the dependency
-
 ````
 dependencies {
     compile 'com.github.goyourfly:multi_picture_view:latestVersion'
