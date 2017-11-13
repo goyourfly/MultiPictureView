@@ -1,6 +1,7 @@
 package com.goyourfly.multi_picture
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
@@ -61,26 +62,26 @@ class MultiPictureView : FrameLayout {
         }
     }
 
-    var space = 8.toPx()
+    private var space = 8.toPx()
 
     // 每行最多显示多少张
-    var span = 3
+    private var span = 3
 
     // 布局方式，动态和固定
-    var imageLayoutMode = ImageLayoutMode.STATIC
+    private var imageLayoutMode = ImageLayoutMode.STATIC
 
     // 最多显示图片个数
-    var max = 9
+    private var max = 9
 
     // 横纵比
-    var ratio: Float = 1F
+    private var ratio: Float = 1F
 
 
     // 删除图标
-    var deleteDrawableId: Int = R.drawable.ic_multiple_image_view_delete
+    private var deleteDrawableId: Int = R.drawable.ic_multiple_image_view_delete
 
     // 添加图标
-    var addDrawableId: Int = R.drawable.ic_multiple_image_view_add
+    private var addDrawableId: Int = R.drawable.ic_multiple_image_view_add
 
 
     var itemClickCallback: ItemClickCallback? = null
@@ -194,10 +195,19 @@ class MultiPictureView : FrameLayout {
 
     fun setDeleteResource(id: Int) {
         this.deleteDrawableId = id
-        this.deleteBitmap = drawableToBitmap(resources.getDrawable(id))
-        if (deleteBitmap != null) {
-            imagePaddingMeasure = deleteBitmap!!.width / 2
+        try {
+            this.deleteBitmap = drawableToBitmap(resources.getDrawable(id))
+            if (deleteBitmap != null) {
+                imagePaddingMeasure = deleteBitmap!!.width / 2
+            }
+        }catch (e:Resources.NotFoundException){
+            e.printStackTrace()
+            this.deleteBitmap = null;
         }
+    }
+
+    fun setAddResource(id:Int){
+        this.addDrawableId = id
     }
 
     fun setEditable(editable: Boolean) {
@@ -312,7 +322,9 @@ class MultiPictureView : FrameLayout {
     }
 
 
-    fun drawableToBitmap(drawable: Drawable): Bitmap {
+    fun drawableToBitmap(drawable: Drawable?): Bitmap? {
+        if(drawable == null)
+            return null;
         if (drawable is BitmapDrawable) {
             return drawable.bitmap
         }

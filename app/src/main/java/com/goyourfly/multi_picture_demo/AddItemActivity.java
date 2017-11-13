@@ -45,6 +45,9 @@ public class AddItemActivity extends AppCompatActivity {
 
         editText = (EditText) findViewById(R.id.edit_content);
         multiPictureView = (MultiPictureView) findViewById(R.id.multiple_image);
+        // 如果不想显示删除按钮，可以这样写
+//        multiPictureView.setDeleteResource(0);
+        multiPictureView.setDeleteResource(R.drawable.ic_delete_24dp);
         multiPictureView.setAddClickCallback(new MultiPictureView.AddClickCallback() {
             @Override
             public void onAddClick(View view) {
